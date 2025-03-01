@@ -31,7 +31,7 @@ Successfully generated the third report as a dataframe, which matched product_sa
  While doing this task, I noticed that if the data for a customer does not come daily, we are making the is_current as False. For such customer_ids, there is no row for is_current=True. As per my understanding, atleast 1 row containing is_current=True should be there for each customer_id, because is_current field helps us understand if the data is latest or historical. Also, there is no provision for deleted custoemrs. There should be a column for is_deleted in 
  products.parquet and customers.parquet where we can control, whether the data exists any longer or not, instead of deleting the data directly from the database. This will help us preserve every sort of historical data.
 
-### Ticket 2.md – 
+### Ticket MIDP-313 – 
 Modified and completed the placeholder code in ./src/utils/validation.py, using the schemas from ./src/configs/schemas.py.
 In the validation logic, I have implemented the following - 
 1. Checked if any field having 'required' = True, is missing or not. If any required value is missing, it is an error.
