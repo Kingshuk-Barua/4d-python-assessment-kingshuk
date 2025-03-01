@@ -9,6 +9,8 @@ def run_ingestion():
     watermark_table = get_watermark_table()
 
     for source_name, config in CONFIGS.items():
+        if source_name == "error":
+            continue
         sys_logger.info(f"Loading {source_name} data")
         read_func = get_read_func(config['file_type'])
         last_run_date = get_last_run_date(source_name, watermark_table)

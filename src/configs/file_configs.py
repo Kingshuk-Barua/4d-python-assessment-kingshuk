@@ -34,9 +34,14 @@ PRODUCT_CONFIG = {
     "file_type": "json",
 }
 
+ERROR_CONFIG = {
+    "location": "./error_reports/",
+}
+
 
 CONFIGS = {
     "customer": CUSTOMER_CONFIG,
     "sales": SALES_CONFIG,
-    "product": PRODUCT_CONFIG
+    "product": PRODUCT_CONFIG,
+    "error": ERROR_CONFIG,
 }
