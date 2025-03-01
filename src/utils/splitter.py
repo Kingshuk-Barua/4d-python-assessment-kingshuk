@@ -9,6 +9,8 @@ def split_files():
     sys_logger.info(f"Files in landing zone: {new_files}")
     for file in new_files:
         for source_name, config in CONFIGS.items():
+            if source_name == "error":
+                continue
             pattern = config['file_pattern']
             if re.match(pattern, file):
                 sys_logger.info(f"{file} matched with {source_name}")

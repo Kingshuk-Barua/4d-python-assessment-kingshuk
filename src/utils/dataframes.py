@@ -1,9 +1,12 @@
 from src.utils.logger import sys_logger
 from src.utils.constants import SYSTEM_COLS
+from src.configs.file_configs import CONFIGS
 from src.utils.files import get_saved_file, save_file, get_save_filename
 from src.utils.validation import validate_data
 import pandas as pd
 from uuid import uuid4
+import datetime
+import os
 
 
 def apply_scd2(old_df, new_df, key_cols, date, is_full=False):
@@ -138,6 +141,13 @@ def process_data(source_name, dataframe, config, date):
     current_table = get_saved_file(source_name)
 
     clean_records, error_records = validate_data(source_name, dataframe)
+
+    error_output_path = CONFIGS['error']['location']
+    os.makedirs(error_output_path, exist_ok=True)
+    formatted_date = date.strftime('%Y%m%d')
+    error_output_file = f"errors_{source_name}_{formatted_date}.csv"
+    error_output_path = os.path.join(error_output_path, error_output_file)
+    error_records.to_csv(error_output_path, index=False)
 
     if len(error_records) > 0:
         sys_logger.warning(f"Found {len(error_records)} error records for {source_name}")

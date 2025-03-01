@@ -141,3 +141,9 @@ PRODUCT_SCHEMA = [
         "required": True
     }
 ]
+
+SCHEMAS = {
+    "customer": CUSTOMER_SCHEMA,
+    "sales": SALES_SCHEMA,
+    "product": PRODUCT_SCHEMA
+}
